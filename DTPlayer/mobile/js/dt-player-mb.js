@@ -1,30 +1,5 @@
 /*
-*    <audio src="url" [data-duration="236"]>
-*    DTPlayer.createPlayer($('audio'), {
-*        bar: { // 默认有进度条  [不需要： false]
-*            className: '.nouislider',
-*            backgroundColor: '#fff',
-*            frontColor: '#ff4200',
-*            height: '5'
-*        },
-*        curTimeClass: '.classname',  // 默认false
-*        durationClass: '.classname',  // 默认false
-*        errorMessageClass: '.classname',  // 默认false
-*        playPauseClass: '.play-pause',  // 必须
-*        playClass: '.play',    // 必须
-*        pauseClass: '.pause',  // 必须
-*        loadingClass: '.loading',  
-*        playedProgress: function(percent) {
-*            // TODO
-*        },
-*        loadError: function(audio) {
-*            // TODO
-*        },
-*        buffering: function(audio, isBuffering) {
-*            // TODO
-*        },
-*        end: function() {}
-*    })
+*   copyright @wangrubing
 */
 (function(global) {
     var playMutex = true,
