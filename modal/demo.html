@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>modal</title>
+    <link rel="stylesheet" href="../../styles/duotin-base.css">
+    <link rel="stylesheet" href="../../styles/duotin-btns.css">
+    <link rel="stylesheet" href="css/dt-modal.css">
+    <style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .test {
+        width: 200px;
+        margin: 0 auto;
+    }
+    </style>
+</head>
+<body>
+    <button id="open">打开</button>
+    <button id="open2">打开2</button>
+
+    <div class="test">
+
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+        哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+    </div>
+    <div class="duotin-modal" id="modal-test">
+        <div class="modal-header">
+            <p class="title title-left">this is a title</p>
+            <a class="btn-close" data-operate="dismiss"></a>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer clearfix">
+            <a href="javascript:;" class="btn btn-basic" data-operate="confirm">确认</a>
+            <a href="javascript:;" class="btn btn-basic btn-white" data-operate="dismiss">取消</a>
+        </div>
+    </div>
+
+    <div class="duotin-modal" id="modal-test2">
+        <div class="modal-header">
+            <p class="title title-left">this is a title</p>
+            <a class="btn-close" data-operate="dismiss"></a>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer clearfix">
+            <a href="javascript:;" class="btn btn-basic" data-operate="confirm">确认</a>
+        </div>
+    </div>
+
+    <script src="../../vendor/jquery/jquery-1.11.1.min.js"></script>
+    <script src="js/dt-modal.js"></script>
+    <script>
+
+    $(function() {
+        var $btn = $('#open');
+
+        var modal1 = $('#modal-test').dtModal({
+            width: 400,
+            blankClickOff: true,
+            confirmCallback: function() {
+                modal1.close();
+            }
+        });
+        var modal2 = $('#modal-test2').dtModal({
+            width: 600,
+            confirmCallback: function() {
+                modal2.close();
+            }
+        });
+        $('#open').on('click', function() {
+            modal1.open();
+        });
+
+        $('#open2').on('click', function() {
+            modal2.open();
+        });
+
+
+        
+    })
+    </script>
+</body>
+</html>

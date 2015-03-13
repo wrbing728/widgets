@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Document</title> 
+    <link rel="stylesheet" href="../lib/nouislider/jquery.nouislider.css">  
+    <link rel="stylesheet" href="css/dt-player-mb.css">
+    <style>
+    body {
+        margin-top: 100px;
+    }
+    button {
+        position: absolute;
+        top: 30px;
+    }
+    .next {
+        left: 50px;
+    }
+    </style>
+</head>
+<body>
+        <audio src="http://c202.duotin.com/M03/3F/13/wKgB3FRgwiqAO6FfAA5tlNzWmZ058.mp3" data-duration="200"></audio>
+        <audio src="http://c202.duotin.com/M03/3F/13/wKgB3FRgwiqAO6FfAA5tlNzWmZ0589.mp3"></audio>
+        <audio src="http://c202.duotin.com/M03/3F/13/wKgB3FRgwiqAO6FfAA5tlNzWmZ0589.mp3" data-duration="236"></audio>
+<!-- 
+        <div class="DTPlayer">
+            <audio src="http://c202.duotin.com/M03/3F/13/wKgB3FRgwiqAO6FfAA5tlNzWmZ0589.mp3" id="audio-a"></audio>
+
+            <div class="nouislider"></div>
+            <div class="load-error-msg"></div>
+            <div class="play-pause">
+                <div class="play"></div>
+                <div class="pause"></div>
+                <div class="loading"><img src="http://c4.duotin.com/2014/podcast/images/loading.gif" alt=""></div>
+            </div>
+            <div class="current-time"></div>
+            <div class="duration"></div>
+            <button class="prev">prev</button>
+            <button class="next">next</button>
+        </div>
+        <div class="DTPlayer">
+            <audio src="http://c202.duotin.com/M03/3F/13/wKgB3FRgwiqAO6FfAA5tlNzWmZ058.mp3" id="audio-b"></audio>
+
+            <div class="nouislider"></div>
+            <div class="load-error-msg"></div>
+            <div class="play-pause">
+                <div class="play"></div>
+                <div class="pause"></div>
+                <div class="loading"><img src="http://c4.duotin.com/2014/podcast/images/loading.gif" alt=""></div>
+            </div>
+            <div class="current-time"></div>
+            <div class="duration"></div>
+        </div>
+        
+        <div class="not-DTPlayer">
+            not-DTPlayer
+            <audio src="http://c202.duotin.com/M03/3F/13/wKgB3FRgwiqAO6FfAA5tlNzWmZ0589.mp3" id="audio-d"></audio>
+
+            <div class="nouislider"></div>
+            <div class="play-pause">
+                <div class="play"></div>
+                <div class="pause"></div>
+                <div class="loading"></div>
+            </div>
+            <div class="current-time"></div>
+            <div class="duration"></div>
+        </div> -->
+    
+    <script src="../lib/zepto.js"></script>
+    <script src="../lib/nouislider/jquery.nouislider.js"></script>
+    <script src="js/dt-player-mb.js"></script>
+    <!-- // <script src="js/debug.min.js"></script> -->
+    <script>
+    var ui = {
+        $audio: $('audio')
+    };
+    var tmpl = '<div class="nouislider"></div>\
+                <div class="load-error-msg"></div>\
+                <div class="play-pause">\
+                    <div class="play"></div>\
+                    <div class="pause"></div>\
+                    <div class="loading"><img src="http://c4.duotin.com/2014/podcast/images/loading.gif" alt=""></div>\
+                </div>\
+                <div class="current-time"></div>\
+                <div class="duration"></div>';
+
+    for (var i = 0; i < ui.$audio.length; i++) {
+        ui.$audio.eq(i).attr('id', 'audio-'+i);
+    }
+    ui.$audio.removeAttr('controls').wrap('<div class="DTPlayer"></div>').after(tmpl);
+
+    var audios = DTPlayer.createPlayer($('audio'), {
+        bar: {
+            className: '.nouislider',
+            // backgroundColor: '#000',
+            // frontColor: '#fff',
+            // height: '15'
+        }, 
+        curTimeClass: '.current-time',
+        durationClass: '.duration',
+        playPauseClass: '.play-pause',
+        playClass: '.play',
+        pauseClass: '.pause',
+        loadingClass: '.loading',
+        errorMessageClass: '.load-error-msg',
+        // playedProgress: function(percent) {
+        //     console.log(percent);
+        // },
+        // loadedProgress: function(loadedPercent) {
+        // 
+        // },
+        // loadError: function() {
+        //     console.log(this);
+        // },
+        buffering: function(isBuffering) {
+            var wrapper = $(this.audio).closest('.DTPlayer');
+            if (isBuffering) {
+                wrapper.find('.play').hide();
+                wrapper.find('.pause').hide();
+                wrapper.find('.loading').show();
+            } else {
+                wrapper.find('.loading').hide();
+                wrapper.find('.play').hide();
+                wrapper.find('.pause').show();
+            }
+        }
+        // end: function() {
+
+        //     alert('end');
+        // }
+    });
+    $('.play-pause').on('click', function(e) {
+        var $this = $(this);
+        var id = $this.closest('.DTPlayer').find('audio').attr('id');
+        var audio = audios[id];
+        if (audio.isPlaying) {
+            audio.pause();
+            $this.closest('.DTPlayer').find('.pause').hide();
+            $this.closest('.DTPlayer').find('.play').show();
+        } else {
+            audio.play();
+            $this.closest('.DTPlayer').find('.play').hide();
+            $this.closest('.DTPlayer').find('.pause').show();
+        }
+    });
+    $('.next, .prev').on('tap click', function() {
+        var $this = $(this),
+            audio = audios['audio-a'],
+            src = 'http://c202.duotin.com/M01/3F/37/wKgB3FRjKI6AADVmAITXR8UaGdM407.mp3';
+
+        audio.changeSrc(src, function() {
+            $this.closest('.DTPlayer').find('.play').show();
+            $this.closest('.DTPlayer').find('.pause').hide();
+            // audio.play();
+        })
+    })
+
+    </script>
+</body>
+</html>
