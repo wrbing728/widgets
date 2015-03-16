@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>placeholder</title>
+    <style>
+    .test {
+        margin: 0px;
+        padding: 0;
+        width: 250px;
+        min-height: 30px;
+    }
+
+    /* for placeholder */
+    .ipt {
+        position: relative;
+    }
+    .ph-text {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        margin-top: -10px;
+        font-size: 14px;
+        color: #777;
+    }
+    .ph-for-login {
+        left: 7%;
+    }
+    .ph-for-textarea {
+        top: 18px;
+    }
+    /* for placeholder end */
+    </style>
+</head>
+<body>
+    <form action="/album/create" method="post">
+        <div class="row" style="margin-bottom:0px;">
+            <input class="test" type="text" data-placeholder="{'text': '请输入2到15个字的专辑名称', 'type': 'text' }" data-valid="{'name': 'albumname', 'size': [2, 15], 'tips': ['专辑名称不能为空', '请输入2-15个字的专辑名称']}">
+        </div>
+        <div class="row">
+            <textarea class="test" data-placeholder="{'text': '请输入20到144个字的专辑描述', 'type': 'textarea' }" rows="6" data-valid="{'name': 'albumintro', 'size': [20, 144],  'tips': ['专辑描述不能为空', '请输入20-144个字的专辑描述']}"></textarea>
+        </div>
+    </form>   
+    <script src="../../vendor/jquery/jquery-1.11.1.min.js"></script>
+    <script src="js/placeholder.js"></script> 
+</body>
+</html>
